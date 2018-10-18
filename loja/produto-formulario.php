@@ -1,19 +1,17 @@
 <?php
 require_once("cabecalho.php");
-require_once("banco-categoria.php");
 require_once("logica-usuario.php");
-require_once("class/Produto.php");
-require_once("class/Categoria.php");
 
 verificaUsuario();
 
 $categoria = new Categoria();
 $categoria->setId(1);
 
-$produto = new Produto();
-$produto->setCategoria($categoria);
+$produto = new Produto("", "", "", $categoria, "");
 
-$categorias = listaCategorias($conexao);
+$categoriaDao = new CategoriaDao($conexao);
+
+$categorias = $categoriaDao->listaCategorias();
 
 ?>	
 
